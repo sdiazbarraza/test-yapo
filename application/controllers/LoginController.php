@@ -1,12 +1,10 @@
 <?php 
-//amespace test-yapo\Application\Controllers;
-use BaseController;
-
 class LoginController  extends BaseController{
-	 public static $userModel;
+	 protected $userModel;
 	 public function __construct()
      {
      		$this->userModel = $this->loadModel("UserModel");
+     		
      } 	
 	public function LoginUser(){
 		$this->loadView('header');

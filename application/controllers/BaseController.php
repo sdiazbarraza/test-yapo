@@ -1,7 +1,7 @@
   <?php 
  include("framework/core/Views.php");
  include("framework/core/Model.php");
-  use Views;
+
   class BaseController
     {
         protected $data;
@@ -12,9 +12,13 @@
             $this->view = new Views();
             $this->view->render($view);
         }
-        protected function loadModel(string $model) {
-            $this->model = new Model();
-            return $this->model->loadModel($model);
-          
+        protected function loadModel(string $modelName) {
+            $pahtFile="application/models/".$modelName.".php";
+        if(file_exists($pahtFile)){
+            include($pahtFile);
+            return  new $modelName;     
+        }else{
+             die('Cannot create new "'.$modelName.'" class - includes not found or class unavailable.');
+        }
         }
     }
