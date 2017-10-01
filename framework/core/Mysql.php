@@ -125,7 +125,7 @@ class Mysql{
 
         if ($row) {
 
-            return $row[0];
+            return $row;
 
         } else {
 
@@ -151,7 +151,7 @@ class Mysql{
 
         if ($result = $this->query($sql)) {
 
-            $row = mysql_fetch_assoc($result);
+            $row =$result-> fetch_assoc();
 
             return $row;
 
@@ -209,7 +209,7 @@ class Mysql{
 
         $list = array();
 
-        while ($row = mysql_fetch_row($result)) {
+        while ($row = $result->fetch_row()) {
 
             $list[] = $row[0];
 
@@ -230,7 +230,7 @@ class Mysql{
 
     public function getInsertId(){
 
-        return mysql_insert_id($this->conn);
+        return mysqli_insert_id($this->conn);
 
     }
 
@@ -246,7 +246,7 @@ class Mysql{
 
     public function errno(){
 
-        return mysql_errno($this->conn);
+        return $this->conn->errno;
 
     }
 
@@ -262,7 +262,7 @@ class Mysql{
 
     public function error(){
 
-        return mysql_error($this->conn);
+        return mysqli_error($this->conn);
 
     }
 

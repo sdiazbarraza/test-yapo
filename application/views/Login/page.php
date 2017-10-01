@@ -1,9 +1,6 @@
+<h1>HELLO! <?php session_start(); echo $_SESSION['username']?> </h1>
 <form name="login" action="/loginprocess" method="post">
-  User name:<br>
-  <input type="text" name="username">
-  <br>
-  Password:<br>
+  <input type="text" name="username" >
   <input type="password" name="password">
-  <br><br>
   <input type="submit" value="Submit">
 </form> 

@@ -7,10 +7,15 @@ foreach (glob("application/controllers/*.php") as $filename)
          include $filename;
 
  }
- 
-$dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
-    $r->addRoute('GET', '/', 'LoginController/LoginUser');
-    $r->addRoute('GET', '/users', 'get_all_users_handler');
+ if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
+    return false;    // serve the requested resource as-is.
+}{
+    $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
+    $r->addRoute('GET', '/', 'LoadViewsController/loginUser');
+    $r->addRoute('POST', '/loginprocess', 'ProcessController/processLogin');
+    $r->addRoute('GET', '/page', 'LoadViewsController/loadPage');
+    $r->addRoute('GET', '/user', 'ProcessController/processRead');
+    $r->addRoute('POST', '/user', 'ProcessController/processCreate');
     // {id} must be a number (\d+)
     $r->addRoute('GET', '/users/{id:\d+}', function(){
         echo "adsad";
@@ -49,3 +54,4 @@ switch ($routeInfo[0]) {
         // ... call $handler with $vars
         break;
 }
+} 

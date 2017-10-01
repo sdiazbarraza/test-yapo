@@ -110,11 +110,9 @@ class BaseModel{
         // Construct sql statement
 
         $sql = "INSERT INTO `{$this->table}` ({$field_list}) VALUES ($value_list)";
-
-        if ($this->db->query($sql)) {
+         if ($this->db->query($sql)) {
 
             // Insert succeed, return the last record’s id
-
             return $this->db->getInsertId();
 
             //return true;
