@@ -34,9 +34,9 @@ class LoadViewsController  extends BaseController{
 					header('HTTP/1.0 401 Unauthorized');
 					echo "ERROR 401 Unauthorized";
 					$page=array_search($_SESSION['roles'],$this->arrayPage);
-					if($page==false){
-						header('Refresh: 2; URL=/'.$page);
-					}	
+					if($page!=false){
+						header('Refresh: 2; URL=/'.$page);	
+					}
 				}
 				
 			}		

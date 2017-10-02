@@ -4,7 +4,7 @@ require 'vendor/autoload.php';
 
 foreach (glob("application/controllers/*.php") as $filename)
  {
-         include $filename;
+         require_once $filename;
 
  }
  if (preg_match('/\.(?:png|jpg|jpeg|gif)$/', $_SERVER["REQUEST_URI"])) {
@@ -12,22 +12,18 @@ foreach (glob("application/controllers/*.php") as $filename)
 }{
     $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'LoadViewsController/loginUser');
-    $r->addRoute('POST', '/loginprocess', 'ProcessController/processLogin');
-    $r->addRoute('POST', '/logout', 'ProcessController/processLogout');
+    $r->addRoute('POST', '/loginprocess', 'ProcessLoginController/processLogin');
+    $r->addRoute('POST', '/logout', 'ProcessLoginController/processLogout');
     $r->addRoute('GET', '/page', 'LoadViewsController/loadPage');
     $r->addRoute('GET', '/page_1', 'LoadViewsController/loadPage');
     $r->addRoute('GET', '/page_2', 'LoadViewsController/loadPage');
     $r->addRoute('GET', '/page_3', 'LoadViewsController/loadPage');
-    $r->addRoute('GET', '/user', 'ProcessController/processData');
-    $r->addRoute('POST', '/user', 'ProcessController/processData');
-    $r->addRoute('PUT', '/user/{id:\d+}', 'ProcessController/processData');
-    $r->addRoute('DELETE', '/user/{id:\d+}', 'ProcessController/processData');
+    $r->addRoute('GET', '/user', 'ApiController/processData');
+    $r->addRoute('POST', '/user', 'ApiController/processData');
+    $r->addRoute('PUT', '/user/{id:\d+}', 'ApiController/processData');
+    $r->addRoute('DELETE', '/user/{id:\d+}', 'ApiController/processData');
     // {id} must be a number (\d+)
-    
-    //$r->addRoute('GET', '/users/{id:\d+}', function(){
-     //   echo "adsad";
-    //});
-    // The /{title} suffix is optional
+       // The /{title} suffix is optional
     $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
 });
 
