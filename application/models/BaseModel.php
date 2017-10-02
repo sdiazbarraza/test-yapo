@@ -177,9 +177,8 @@ class BaseModel{
        
 
         if ($this->db->query($sql)) {
-
             // If succeed, return the count of affected rows
-        	if ($rows = $this->db->affected_rows) {
+            if ($rows = $this->db->affected_rows()) {
 
                 // Has count of affected rows  
 
@@ -242,7 +241,7 @@ class BaseModel{
 
             // If succeed, return the count of affected rows
 
-            if ($rows = mysql_affected_rows()) {
+            if ($rows = $this->db->affected_rows()) {
 
                 // Has count of affected rows
 

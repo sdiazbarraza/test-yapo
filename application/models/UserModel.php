@@ -10,10 +10,12 @@ class UserModel extends BaseModel{
 	public function __construct() {
 		parent::__construct($this->_table);
 	}
-	public function getUsers(){
-
-		$sql = "select * from $this->table";
-
+	public function getUsers(bool $isRead){
+		if($isRead){
+				$sql = "select username,roles  from $this->table";		
+		}else{
+				$sql = "select *  from $this->table";		
+		}
 		$users = $this->db->getAll($sql);
 
 		return $users;
@@ -40,6 +42,10 @@ class UserModel extends BaseModel{
 	    	$result=$this->insert($this->arrayFields);
 	    }	
 		return $result;
+	}
+	public function toUpdate(array $data){
+		
+		return $this->update($data);
 	}
 	private function isExistUser($data){
 		$sql = "select * from $this->table where username='{$data['username']}' and roles='{$data['roles']}'";

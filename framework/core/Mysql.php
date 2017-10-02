@@ -249,7 +249,21 @@ class Mysql{
         return $this->conn->errno;
 
     }
+    /**
 
+     * Get affected rows
+
+     * @access private
+
+     * @return affected rows
+
+     */
+
+    public function affected_rows(){
+
+        return $this->conn->affected_rows;
+
+    }
     /**
 
      * Get error message

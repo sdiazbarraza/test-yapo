@@ -13,13 +13,17 @@ foreach (glob("application/controllers/*.php") as $filename)
     $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'LoadViewsController/loginUser');
     $r->addRoute('POST', '/loginprocess', 'ProcessController/processLogin');
+    
     $r->addRoute('GET', '/page', 'LoadViewsController/loadPage');
-    $r->addRoute('GET', '/user', 'ProcessController/processRead');
-    $r->addRoute('POST', '/user', 'ProcessController/processCreate');
+    $r->addRoute('GET', '/user', 'ProcessController/processData');
+    $r->addRoute('POST', '/user', 'ProcessController/processData');
+    $r->addRoute('PUT', '/user/{id:\d+}', 'ProcessController/processData');
+    $r->addRoute('DELETE', '/user/{id:\d+}', 'ProcessController/processData');
     // {id} must be a number (\d+)
-    $r->addRoute('GET', '/users/{id:\d+}', function(){
-        echo "adsad";
-    });
+    
+    //$r->addRoute('GET', '/users/{id:\d+}', function(){
+     //   echo "adsad";
+    //});
     // The /{title} suffix is optional
     $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
 });
