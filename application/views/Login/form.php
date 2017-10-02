@@ -1,3 +1,7 @@
 <form name="login" action="/loginprocess" method="post">
-  <input type="submit" value="Close Session">
+   Username: <input type="text" name="username" >
+  <br><br>
+  Password: <input type="password" name="password">
+  <br><br>
+  <input type="submit" value="Submit">
 </form> 

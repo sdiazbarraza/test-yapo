@@ -13,8 +13,11 @@ foreach (glob("application/controllers/*.php") as $filename)
     $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', 'LoadViewsController/loginUser');
     $r->addRoute('POST', '/loginprocess', 'ProcessController/processLogin');
-    
+    $r->addRoute('POST', '/logout', 'ProcessController/processLogout');
     $r->addRoute('GET', '/page', 'LoadViewsController/loadPage');
+    $r->addRoute('GET', '/page_1', 'LoadViewsController/loadPage');
+    $r->addRoute('GET', '/page_2', 'LoadViewsController/loadPage');
+    $r->addRoute('GET', '/page_3', 'LoadViewsController/loadPage');
     $r->addRoute('GET', '/user', 'ProcessController/processData');
     $r->addRoute('POST', '/user', 'ProcessController/processData');
     $r->addRoute('PUT', '/user/{id:\d+}', 'ProcessController/processData');
@@ -42,12 +45,12 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
         // ... 404 Not Found
-        die("no estoy");
+        die("404 Not Found");
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];
         // ... 405 Method Not Allowed
-         die("no estoy");
+         die("405 Method Not Allowed");
         break;
     case FastRoute\Dispatcher::FOUND:
         
