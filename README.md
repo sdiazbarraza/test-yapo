@@ -59,6 +59,30 @@ application/json
 ```
 field=value&field=value
 ```
+## Method Allowed Api-Rest
+```
+GET,POST,PUT,DELETE
+```
+### Metod GET
+Show all user 
+```
+//host:PORT/user
+```
+### Metod POST
+Show create user 
+```
+//host:PORT/user
+```
+### Metod PUT
+Show update user 
+```
+//host:PORT/user/iduser
+```
+### Metod DELETE
+Show delete user 
+```
+//host:PORT/user/iduser
+```
 ## Build 
 I started by creating the project folder structure for proper use of the mvc pattern. Then install fastRoute, to streamline the theme of the routes with the drivers. Then begin with the development of the "Core" of the framework, in the first instance with the Views, then with Model that included the connection to the database, to continue with the development of the BaseController which includes the loading of views and models properly such. Once this is done, it starts with the development of the application, starting with the login module, once this is completed, continue with the development of the api, with the respective operations, ending with the login of credentials and respective validations.
 
